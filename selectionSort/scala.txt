@@ -1,0 +1,168 @@
+
+I'm asking you to write Scala code.  You can work from my lecture
+examples for selection sort.  I'd like you to run a few tests on 
+the code to convince yourself (and me) that your code works.  
+
+ACCESSING SCALA
+---------------
+
+You use Scala just the way you used Java.  Namely, there are two 
+Terminal/Unix shell commands:
+   
+  scalac - the Scala compiler.  This converts a collection of
+           Scala source code files into a (possibly larger)
+           collection of .class files.  For example, if you
+           have a source file called Foo.scala you can compile
+           it with the command
+
+             scalac Foo.scala
+
+  scala - the Scala interpreter.  If you have a compiled Scala class, 
+          let's call it Foo, with a procedure declared as
+
+            def main(args:Array[String]):Unit = { ... }
+  
+          then typing in the command
+
+            scala Foo
+
+          will run that procedure.  If you type instead
+
+            scala Foo arg1 arg2 ... argn
+
+          then those n arguments will be passed to the main procedure
+          as an array of their strings.
+
+          One additional feature of Scala is that you can run the 
+          interpreter stand-alone, like you can with languages like
+          Python and Haskell, etc.  If you enter just
+
+             scala
+
+          then the interpreter will run and prompt you for expressions
+          that you'd like to evaluate, and statements that you'd like
+          to execute, and they evaluate/execute immediately and produce 
+	  their result/effect.
+
+You will be writing or modifying code using a standard text editor.  On the
+Mac that would be a program like TextEdit or TextWrangler.  On Linux there 
+is a program called gedit.  In both systems you can use the Unix editors
+emacs, vim, or nano.
+
+There are a number of ways of getting access to Scala.
+
+* On ETC Macs: I've asked CUS to install the latest version of Scala
+onto campus Macs.  If it hasn't been installed yet, it will be shortly.
+
+* On MathLab machines: you can go into Library 382 and login to those
+machines.  Within Ubuntu you can bring up a terminal window and execute
+commands just like you would on the Mac.
+
+* Remotely, on MathLab machines: you can use the SSH command to remotely
+login to a Library 382 machine.  SSH comes with any Mac or Linux system 
+and is used within the Unix shell.  (On Windows you can use a program 
+called PuTTY)  You would enter a Unix command like
+
+   ssh yourlogin@pasty.reed.edu
+
+type in your password and that puts you onto that MathLab machine.
+
+Once there, you'll be placed into the middle of your files.reed.edu
+Home Server folder with the path (supported by AFS) 
+
+   /afs/reed.edu/user/y/o/yourlogin
+
+and you can do all your work there (and it stays there, remains permanent,
+when you logout).  Because you are logged in remotely you are limited to 
+using only terminal-based editors like emacs, vim, and nano.  It's also
+possible to configure things on your own machine so that you edit on your
+machine, have the changes put onto files.reed.edu, and run things through
+this SSH session.  AFS can be accessed in a number of ways.
+   
+* On your own machine: Scala is freely available for download from the
+web site
+
+  http://www.scala-lang.org/downloads
+
+The way I installed it on my mac is from the tarball (linked on that page):
+
+  http://www.scala-lang.org/downloads/distrib/files/scala-2.10.0.tgz
+
+I simply unpacked its folder into some location.  I chose to place it as
+
+  /Users/myusername/src/scala-2.10.0
+
+and I access the commands that live in 
+
+  /Users/myusername/src/scala-2.10.0/bin
+
+That means, for example, that I can type 
+
+  /Users/myusername/src/scala-2.10.0/bin/scalac Foo.scala
+
+to run the compiler.  I actually change my shell PATH variable with the
+Unix command
+
+  export PATH=/Users/myusername/src/scala-2.10.0/bin:$PATH
+
+but, even better, I do that by adding the command line just above to a
+file called
+
+  /Users/myusername/.profile
+
+which runs everytime I start a new Terminal window.  In that way, I am
+able to just type
+
+  scalac Foo.scala
+
+and everything works just fine!
+
+
+GETTING THE CODE
+----------------
+
+I've put an example Scala source code file, one that implements two other
+sorting algorithms from the text--- Insertion sort and Mergesort.  They are
+sitting in AFS at
+
+  /afs/reed.edu/courses/math/math382/matter/lec1.1/selection.scala
+
+You can make a copy of that file into your own folder with a command like
+
+  cp /afs/reed.edu/courses/math/math382/matter/lec1.1/selection.scala selection.scala
+
+You can make a copy of my code, rename it, for your sorting code. Name it after the
+sorting algorithm like I did, say, bubble.scala.
+
+
+COMPILING AND RUNNING YOUR CODE
+-------------------------------
+
+Once you've written your code you can enter the command
+
+  scalac bubble.scala
+
+If there are no errors you can run it with something like
+
+  scala bubble 23 45 12 6 4 43 87 3 
+
+and those eight values will get passed as String arguments to your main 
+procedure.  Your code should output the results of sorting that sequence
+using your sorting code.
+
+SAVING YOUR TEST OUTPUT
+-----------------------
+
+It's possible to make Unix save your program's output to a file, rather 
+than to the Terminal.  If you type
+
+  scala bubble 23 45 12 6 4 43 87 3 > bubble.out
+
+then that will create/replace a file named test1.out with the stuff 
+output by the println statements in your program.  The command
+
+  scala bubble 23 45 12 6 4 43 87 3 >> bubble.out
+
+instead appends the printed stuff to the end of an existing file.
+
+
